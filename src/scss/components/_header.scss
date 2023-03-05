@@ -1,0 +1,20 @@
+.menu-nav {
+    .menu-items .dropdown {
+        cursor: pointer;
+
+        .dropdown-menu {
+            display: none;
+            top: 40px;
+            box-shadow: 2px 4px 7px #ebebeb;
+            border: none;
+        }
+
+        .dropdown-menu span {
+            display: inline-block;
+        }
+
+        .dropdown-menu.active {
+            display: block;
+        }
+    }
+}

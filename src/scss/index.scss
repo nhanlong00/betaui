@@ -1,5 +1,7 @@
 @import './variables';
 @import './mixins';
 @import './base';
-@import './system'
+@import './system';
 
+@import './components/header';
+@import './components//banner';
