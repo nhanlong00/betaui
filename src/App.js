@@ -1,7 +1,7 @@
 import React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import Layout from './components/Layout';
-import { Home, About, Contact, News, Store} from './pages/index'
+import { Home, About, Contact, News, Store, Login, Register, Cart} from './pages/index'
 import './scss/index.scss'
 
 function App() {
@@ -15,6 +15,9 @@ function App() {
             <Route path='store' element={<Store />}></Route>
             <Route path='new' element={<News />}></Route>
             <Route path='contact' element={<Contact />}></Route>
+            <Route path='login' element={<Login />}></Route>
+            <Route path='register' element={<Register />}></Route>
+            <Route path='cart' element={<Cart />}></Route>
           </Route>
         </Routes>
       </BrowserRouter>

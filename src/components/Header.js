@@ -37,7 +37,7 @@ const Header = () => {
                     <div className='row align-items-center'>
                         <div className='col-2'>
                             <h1 className='mb-0'>
-                                <Link className='color-white' href="/">Logo </Link>
+                                <Link className='color-white' to="/">Logo </Link>
                             </h1>
                         </div>
                         <div className='col-5'>
@@ -64,11 +64,14 @@ const Header = () => {
 
                                 <div className='login d-flex align-items-center'>
                                     <div className='ml-1'><FiUser className='color-white fz-24 mg-r-10' /></div>
-                                    <Link><span className='color-white'>Đăng nhập <br /> <small>Tài khoản của tôi</small></span></Link>
+                                    <div className='d-flex flex-column'>
+                                        <Link to='/login'><span className='color-white'>Đăng nhập</span></Link>
+                                        <Link to='/register'><small className='color-white'>Đăng kí</small></Link>
+                                    </div>
                                 </div>
 
                                 <div className='cart d-flex align-items-center'>
-                                    <Link>
+                                    <Link to='/cart'>
                                         <div><AiOutlineShoppingCart className='color-white fz-24 mg-r-10' /></div>
                                     </Link>
                                     <div className='cart-number color-white'>0</div>
