@@ -17,4 +17,27 @@
             display: block;
         }
     }
+
+    .menu-mobi {
+        display: none;
+    }
+}
+
+@media only screen and (max-width: 768px) {
+    .header-bottom {
+        .header-bottom-action {
+            justify-content: space-around !important;
+        }
+
+        .compare-product ,
+        .favorite-whislist {
+            display: none !important;
+        }
+    }
+
+    .menu-bottom {
+        .menu-mobi.active {
+            display: block;
+        }
+    }
 }

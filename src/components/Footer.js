@@ -7,7 +7,7 @@ const Footer = () => {
             <div className='container-xxl py-3'>
                 <div>
                     <div className='row'>
-                        <div className='col-4 footer-left'>
+                        <div className='col-12 col-sm-12 col-md-4 col-lg-4 footer-left'>
                             <div>
                                 <h1 className='footer-logo color-white'>Logo</h1>
                                 <p className='footer-brief color-white'>
@@ -32,7 +32,7 @@ const Footer = () => {
                             </div>
                         </div>
 
-                        <div className='col-4 footer-center'>
+                        <div className='col-12 col-sm-12 col-md-4 col-lg-4 footer-center'>
                             <div className='title color-white fz-24 mg-b-16'>Danh mục</div>
                             <ul className='intro-list__items'>
                                 <li className=''>
@@ -49,7 +49,7 @@ const Footer = () => {
                                 </li>
                             </ul>
                         </div>
-                        <div className='col-4 footer-right'>
+                        <div className='col-12 col-sm-12 col-md-4 col-lg-4 footer-right'>
                             <div className='payment-method color-white color-white fz-24 mg-b-16'>Phương thức thanh toán</div>
                             <div className='contact-social color-white'>
                                 <div className='contact-us-social color-white'>Liên hệ với chúng tôi</div>

@@ -30,3 +30,20 @@ img {
     max-width: 100%;
 }
 
+.btn-action-secondary {
+    outline: none;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 4px;
+    background-color: $bg-secondary;
+    color: $color-white;
+}
+
+.btn-action-primary {
+    outline: none;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 4px;
+    background-color: $bg-main;
+    color: $color-white;
+}
