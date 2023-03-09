@@ -745,7 +745,7 @@
     border-color: $main-color;
 }
 .border-color-secondaray {
-    border-color: $main-color;
+    border-color: $other-color;
 }
 .border-color-danger {
     border-color: $color-danger;
@@ -1011,6 +1011,50 @@
     gap: 0rem;
 }
 
-.flex-wrap {
+// ----------FLEX----------//
+.fl {
+    display: flex;
+}
+.fl-1 {
+    flex: 1;
+}
+.fl-direction-col {
+    flex-direction: column;
+}
+.fl-direction-row {
+    flex-direction: row;
+}
+.fl-wrap {
     flex-wrap: wrap;
+}
+.justify-center {
+    justify-content: center;
+}
+.justify-between {
+    justify-content: space-between;
+}
+.justify-around {
+    justify-content: space-around;
+}
+.justify-start {
+    justify-content: start;
+}
+.justify-end {
+    justify-content: end;
+}
+.align-start {
+    align-items: start;
+}
+.align-center {
+    align-items: center;
+}
+.align-end {
+    align-items: end;
+}
+
+.rlt {
+    position: relative;
+}
+.absol {
+    position: absolute;
 }

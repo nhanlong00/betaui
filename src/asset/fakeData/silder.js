@@ -13,7 +13,6 @@ const sliderData = [
         image: 'http://thoitrang9.giaodienwebmau.com/wp-content/uploads/2021/09/banner-2.jpg',
         path: "/"
     }
-    
 ]
 
 export default sliderData

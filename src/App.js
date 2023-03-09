@@ -1,7 +1,7 @@
 import React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import Layout from './components/Layout';
-import { Home, About, Contact, News, Store, Login, Register, Cart, ProductDetail} from './pages/index'
+import { Home, About, Contact, News, Store, Login, Register, Cart, ProductDetail, Shipping} from './pages/index'
 import './scss/index.scss'
 
 function App() {
@@ -19,6 +19,7 @@ function App() {
             <Route path='register' element={<Register />}></Route>
             <Route path='cart' element={<Cart />}></Route>
             <Route path='product' element={<ProductDetail />}></Route>
+            <Route path='shipping' element={<Shipping />}></Route>
           </Route>
         </Routes>
       </BrowserRouter>
