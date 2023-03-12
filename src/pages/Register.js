@@ -1,9 +1,11 @@
 import React from "react";
 import { Link } from 'react-router-dom'
+import Helmet from '../components/Helmet'
 
 const Register = () => {
   return (
-    <div className="container-xxl">
+    <Helmet title="Đăng kí">
+        <div className="container-xxl">
         <div className="row">
             <div className="col-12">
                 <div className="mg-45 d-flex justify-content-center align-items-center form-login">
@@ -74,7 +76,8 @@ const Register = () => {
             </div>
         </div>
     </div>
-  );
-};
+    </Helmet>
+  )
+}
 
 export default Register;

@@ -1,10 +1,12 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import { BiTrashAlt} from 'react-icons/bi'
+import Helmet from '../components/Helmet'
 
 const Cart = () => {
   return (
-    <div className='container-xxl'>
+    <Helmet title='Giỏ hàng'>
+         <div className='container-xxl'>
         <div className='row pd-t-45 pd-b-45'>
             <div className='col-9'>
                 <table class="table">
@@ -57,12 +59,15 @@ const Cart = () => {
                     </div>
 
                     <div className='mg-tb-16 text-center'>
-                        <button className='btn bg-secondary color-white'>Tiến hành thanh toán</button>
+                        <Link to='/shipping'>
+                            <button className='btn bg-secondary color-white'>Tiến hành thanh toán</button>
+                        </Link>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+    </Helmet>
   )
 }
 
