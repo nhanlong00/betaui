@@ -1,26 +1,37 @@
-import React, { useEffect, useState } from "react";
-import ProductItem from "./ProductItem";
-import axios from 'axios'
+import React, { useEffect } from "react"
+
+import { useDispatch, useSelector } from 'react-redux'
+import { listProduct } from "../../app/Actions/ProductActions"
+
+import ProductItem from "./ProductItem"
+import Loading from '../LoadingError/Loading'
+import Message from "../LoadingError/Error"
 
 const ProductList = () => {
-  const [products, setProducts] = useState([])
+    const dispatch = useDispatch()
+    const productList = useSelector((state) => state.productList)
+    const { loading, error, products: items  } = productList
 
-  useEffect(() => {
-    const getData = async () => {
-      const { data } = await axios.get('/v1/products')
-      setProducts(data.products)
-    }
+    useEffect(() => {
+        dispatch(listProduct())
+    }, [dispatch])
 
-    getData()
-  }, [])
-
-  return (
-    <div className="row">
-      { products.map((item) => (
-        <ProductItem key={item._id} item={item} />
-      ))}
-    </div>
-  );
-};
+    return (
+        <div className="row">
+            { 
+                loading ? (<Loading />) : error ? (<Message variant="alert-danger">{error}</Message>)
+                :
+                (
+                    <>
+                        { items.products && items.products.map((item) => (
+                            <ProductItem key={item._id} item={item} />
+                            ))
+                        }
+                    </>
+                )
+            }
+        </div>
+    )
+}
 
 export default ProductList;

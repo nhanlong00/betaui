@@ -33,7 +33,7 @@ const ProductItems = ({ item }) => {
                 </div>
             </div>  
         </div>
-  )
+    )
 }
 
 export default ProductItems;
