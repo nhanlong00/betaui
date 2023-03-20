@@ -40,7 +40,7 @@ export const listProduct = () =>  async (dispatch) => {
  * @returns []
  */
 
-export const productDetails = (id) =>  async (dispatch) => {
+export const listProductDetails = (id) =>  async (dispatch) => {
     try {
         dispatch({
             type: PRODUCT_DETAILS_REQUEST

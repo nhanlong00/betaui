@@ -14,7 +14,7 @@ import {
  * @param {*} action 
  * @returns 
  */
-export const productListReducer = ( state = {products: [],}, action) => {
+export const productListReducer = ( state = {products: []}, action) => {
     switch(action.type) {
         case PRODUCT_LIST_REQUEST:
             return {
@@ -44,7 +44,7 @@ export const productListReducer = ( state = {products: [],}, action) => {
  * @param {*} action 
  * @returns 
  */
-export const productDetailsReducer = ( state = { products: {review: [] },}, action) => {
+export const productDetailsReducer = ( state = { product: {reviews: [] },}, action) => {
     switch(action.type) {
         case PRODUCT_DETAILS_REQUEST:
             return {
