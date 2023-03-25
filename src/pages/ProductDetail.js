@@ -50,7 +50,7 @@ const ProductDetail = () => {
 
     const handleAddtoCart = (e) => {
         e.preventDefault()
-        history(`/cart/${id}?qty=${qty}?color=${colors}?size=${sizes}`)
+        history(`/cart/${id}?qty=${qty}&color=${colors}&size=${sizes}`)
     }
 
     return (
