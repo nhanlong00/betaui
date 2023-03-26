@@ -63,7 +63,7 @@ const Register = () => {
                         </div>
 
                         <div className="mg-b-16 text-center btn-submit">
-                            <button className="btn  bg-secondary color-white">Đăng nhập</button>
+                            <button className="btn  bg-secondary color-white">Đăng kí </button>
                         </div>
                         <div className="text-center">
                             Đăng nhập ngay bây giờ ?

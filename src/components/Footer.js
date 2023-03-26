@@ -23,7 +23,7 @@ const Footer = () => {
                                 </div>
                                 <div className='pd-tb-4'>
                                     <span className='color-white mg-r-5'>Email:</span>
-                                    <a className='color-white' href='mailto:tranhanhtuongvi@gmail.com'>tranhanhtuongvi@gmail.com</a>
+                                    <a className='color-white' href='mailto:tranhanhtuongvi@gmail.com'>trananhhuy23112000@gmail.com</a>
                                 </div>
                                 <div className='pd-tb-4'>
                                     <span className='color-white mg-r-5'>Địa chỉ:</span>
@@ -92,7 +92,7 @@ const Footer = () => {
             <div className='container-xxl py-3'>
                 <div className='row'>
                     <div className='col-12 footer-copyright'>
-                        <p className='mb-0 color-white text-center mtb-10'>Copyright {new Date().getFullYear()} by me</p>
+                        <p className='mb-0 color-white text-center mtb-10'>Copyright {new Date().getFullYear()} by Trần Văn Huy K12A CNTT</p>
                     </div>
                 </div>
             </div>

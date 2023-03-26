@@ -5,7 +5,6 @@ import Helmet from '../components/Helmet'
 
 const Home = () => {
 
-
     return (
         <Helmet title='Trang chủ'>
             <div className='container-xxl'>

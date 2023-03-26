@@ -1,14 +1,15 @@
 import React, { useState, useEffect } from 'react'
-import { Link, useParams, useNavigate  } from 'react-router-dom'
-import { AiOutlineMinus, AiOutlinePlus } from 'react-icons/ai'
+import { useParams, useNavigate  } from 'react-router-dom'
+import { useSelector, useDispatch } from 'react-redux';
 
 import Helmet from '../components/Helmet'
 import Loading from '../components/LoadingError/Loading'
 import Message from '../components/LoadingError/Error'
 import Rating from '../components/Rating/Rating'
+import { AiOutlineMinus, AiOutlinePlus } from 'react-icons/ai'
 
-import { useDispatch, useSelector } from 'react-redux'
 import { listProductDetails } from '../app/Actions/ProductActions'
+import { addItemToCart } from '../app/Actions/CartActions';
 
 /**
  * User: Huy
@@ -17,44 +18,54 @@ import { listProductDetails } from '../app/Actions/ProductActions'
  */
 
 const ProductDetail = () => {
-    const { id } = useParams()
-    const history = useNavigate()
-    const dispatch = useDispatch()
-    const productDetail = useSelector(state => state.productDetail)
-    const { loading, error, product: singleProduct } = productDetail
+    const { id } = useParams();
+    const navigate = useNavigate();
+    const dispatch = useDispatch();
 
-    const [qty, setQty] = useState(0)
-    const [sizes, setSizes] = useState(undefined)
-    const [images, setImages] = useState(undefined)
-    const [colors, setColors] = useState(undefined)
+    // Product detail 
+    const productDetail = useSelector(state => state.productDetail);
+    const { loading, error, product: singleProduct } = productDetail;
 
-    useEffect(() => {
-        dispatch(listProductDetails(id))
-    }, [dispatch, id])
+    // Set the params
+    const [quantity, setQuantity] = useState(1);
+    const [sizes, setSizes] = useState(undefined);
+    const [colors, setColors] = useState(undefined);
 
     useEffect(() => {
-        window.scrollTo(0,0)
+        dispatch(listProductDetails(id));
+    }, [dispatch, id]);
+
+    useEffect(() => {
+        window.scrollTo(0,0);
     }, [id])
 
     const handleDecrease = () => {
-        if(qty <= 0) {
-            setQty(0)
+        if(quantity <= 0) {
+            setQuantity(0)
         } else {
-            setQty(qty - 1)
+            setQuantity(quantity - 1)
         }
     }
 
     const handleIncrease = () => {
-        setQty(qty + 1)
+        setQuantity(quantity + 1)
     }
 
-    const handleAddtoCart = (e) => {
-        e.preventDefault()
-        history(`/cart/${id}?qty=${qty}&color=${colors}&size=${sizes}`)
+    const addToCartHandler = () => {
+        dispatch(addItemToCart(
+            singleProduct._id, 
+            quantity, 
+            sizes, 
+            colors)
+        )
+        navigate(`/cart/${id}?quantity=${quantity}&size=${sizes}&color=${colors}`, { 
+            state: { size: sizes, color: colors }, 
+            search: '?sort=price' 
+        });
     }
 
     return (
-        <Helmet title={ 'a' ?? 'Sản phẩm'}>
+        <Helmet title={singleProduct.nameProd ?? 'Sản phẩm'}>
             { loading 
                 ? ( <Loading /> ) 
                 : error 
@@ -96,22 +107,30 @@ const ProductDetail = () => {
                                                 ))
                                             }
                                         </div>
-                                            <div className='size-variable fz-14  mg-b-30'>
-                                                <p className='title-color fz-16 mg-b-8'>Kích cỡ</p>
-                                                {
-                                                    singleProduct.size && singleProduct.size.map(item => (
-                                                        <span key={item}
-                                                            className={`size border-default border-color-secondary 
-                                                                        pd-tb-4 pd-lr-8 mg-r-8 border-circle-4 
-                                                                        ${sizes === item ? 'active' : ''}`
-                                                                    }
-                                                            onClick={() => setSizes(item)}
-                                                        >
-                                                            {item}
-                                                        </span>
-                                                    ))
-                                                }
-                                            </div>
+                                        <div className='size-variable fz-14  mg-b-30'>
+                                            <p className='title-color fz-16 mg-b-8'>Kích cỡ</p>
+                                            {
+                                                singleProduct.size && singleProduct.size.map(item => (
+                                                    <span key={item}
+                                                        className={`size border-default border-color-secondary 
+                                                                    pd-tb-4 pd-lr-8 mg-r-8 border-circle-4 
+                                                                    ${sizes === item ? 'active' : ''}`
+                                                                }
+                                                        onClick={() => setSizes(item)}
+                                                    >
+                                                        {item}
+                                                    </span>
+                                                ))
+                                            }
+                                        </div>
+                                        <div className='size-variable fz-14  mg-b-20'>
+                                            Trạng thái:{' '}
+                                            {singleProduct.countInStock > 0 ? (
+                                                <span className='text-success'>Còn hàng</span>
+                                            ) : (
+                                                <span className='text-danger'>Hết hàng</span>
+                                            )}
+                                        </div>
                                         <div className='quantity d-flex align-items-center mg-b-16'>
                                             <div className='fl'>
                                                 <span className='decrease mg-r-8 align-middle border-default border-color-secondary pd-tb-4 pd-lr-8 mg-r-8 border-circle-4'
@@ -122,8 +141,8 @@ const ProductDetail = () => {
                                                 <input
                                                     className='form-control text-center w-3lg'
                                                     type="text"
-                                                    value={qty}
-                                                    onChange={(e) => setQty(e.target.value)}
+                                                    value={quantity}
+                                                    onChange={(e) => setQuantity(e.target.value)}
 
                                                 />
                                                 <span className='increase mg-l-8 align-middle border-default border-color-secondary pd-tb-4 pd-lr-8 mg-r-8 border-circle-4'
@@ -132,20 +151,12 @@ const ProductDetail = () => {
                                                     <AiOutlinePlus />
                                                 </span>
                                             </div>
-                                            <div className='mg-l-16 add-cart'>
-                                                <button className='btn-action-secondary btn-card'
-                                                    onClick={handleAddtoCart}
+                                        </div>
+                                        <div className='add-cart'>
+                                                <button className='btn-action-secondary btn-card full-width h-2xl text-uppercase text-bold'
+                                                    onClick={addToCartHandler}
                                                 >Thêm vào giỏ hàng</button>
                                             </div>
-                                        </div>
-                                        <div className='buy-now'>
-                                            <Link to='/cart'>
-                                                <button className='btn-buynow btn-action-primary full-width h-2xl text-uppercase d-flex align-items-center flex-column'>
-                                                    <span>Mua ngay</span>
-                                                    <small className='fz-12 mg-t-4'>( Hàng sẽ được vận chuyển tối đa sau 2 ngày )</small>
-                                                </button>
-                                            </Link>
-                                        </div>
                                     </div>
 
                                     <div className='col-12 mg-t-45'>

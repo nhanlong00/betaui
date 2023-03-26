@@ -1,6 +1,6 @@
-import React from 'react'
-import { useState } from 'react'
-import { Link, NavLink } from 'react-router-dom'
+import React, { useState } from 'react'
+import { Link, NavLink, useNavigate } from 'react-router-dom'
+
 import { BsSearch } from 'react-icons/bs'
 import { FiUser } from 'react-icons/fi'
 import { HiSwitchHorizontal } from 'react-icons/hi'
@@ -9,11 +9,23 @@ import { AiOutlineShoppingCart, AiOutlineBars } from 'react-icons/ai'
 import { BiCategoryAlt } from 'react-icons/bi'
 
 const Header = () => {
+    const [keyword, setKeyword] = useState('')
     const [dropdown, setDropDown] = useState(false)
-    const [hideShowMenu, setHideShowMenu] = useState(false)
 
-    let handleDropDown = () => {
+    const navigate = useNavigate();
+
+    const handleDropDown = () => {
         setDropDown(!dropdown)
+    }
+
+    const submitHandlerSearch = (e) => {
+        e.preventDefault()
+
+        if(keyword.trim()) {
+            navigate(`/search/${keyword}`);
+        } else {
+            navigate('/');
+        }
     }
 
     return (
@@ -38,17 +50,23 @@ const Header = () => {
                     <div className='row align-items-center'>
                         <div className='col-3'>
                             <h1 className='mb-0'>
-                                <Link className='color-white' to="/">Juniky</Link>
+                                <Link className='color-white' to="/">TREX</Link>
                             </h1>
                         </div>
                         <div className='col-6'>
                             <div className="form-search rlt">
-                                <input type='text' className='input-search'
-                                    placeholder="Tìm kiếm"
-                                />
-                                <button className='btn-search absol'>
-                                    <BsSearch className='fs-5 btn-search-action' />
-                                </button>
+                                <form onSubmit={submitHandlerSearch} className='input-group'>
+                                    <input 
+                                        type='text' 
+                                        className='input-search'
+                                        placeholder="Tìm kiếm"
+                                        value={keyword}
+                                        onChange={(e) => setKeyword(e.target.value)}
+                                    />
+                                    <button className='btn-search absol'>
+                                        <BsSearch className='fs-5 btn-search-action' />
+                                    </button>
+                                </form>
                             </div>
                         </div>
                         <div className='col-3'>

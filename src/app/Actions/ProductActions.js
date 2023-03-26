@@ -14,13 +14,13 @@ import {
  * @returns {}
  */
 
-export const listProduct = () =>  async (dispatch) => {
+export const listProduct = (keyword = ' ') =>  async (dispatch) => {
     try {
         dispatch({
             type: PRODUCT_LIST_REQUEST
         })
 
-        const { data } = await axios.get('/v1/products')
+        const { data } = await axios.get(`/v1/products?keyword=${keyword}`)
         dispatch({
             type: PRODUCT_LIST_SUCCESS, 
             payload: data
